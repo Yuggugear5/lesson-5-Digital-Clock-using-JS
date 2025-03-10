@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+<div id="MyCalanderDisplay" onload = "showTime()"></div>
+      <script>
+function showYear() {
+    var date = new Date();
+    var d = date.getUTCDay();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    
+    if(d==0){
+        d = 31
+    }
+    
+    if(d > 31){
+        d = d - 31
+    }
+
+    d =(d < 10) ? "0" + d : d;
+    m =(m < 10) ? "0" + m : m;
+    y =(y < 10) ? "0" + y : y;
+
+    var year = "Date: " + d + "/" + m + "/" + y + " Day:" + d;
+    document.getElementById("MyCalanderDisplay").innerText = year;
+    setYearout(showYear,1000); 
+}
+
+showYear();
+      </script>  
+    </body>
+</html>
