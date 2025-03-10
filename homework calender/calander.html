@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
+    <title>Calendar Display</title>
+  </head>
+  <body>
+    <div id="MyCalanderDisplay"></div>
 
-    </head>
-    <body>
-<div id="MyCalanderDisplay" onload = "showTime()"></div>
-      <script>
-function showYear() {
-    var date = new Date();
-    var d = date.getUTCDay();
-    var m = date.getMonth();
-    var y = date.getFullYear();
+    <script>
+      function showYear() {
+        var date = new Date();
+        
+        
+        var dayIndex = date.getDay();
+        var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var dayName = weekday[dayIndex];
+
+        var d = date.getDate(); 
+        var m = date.getMonth() + 1; 
+        var y = date.getFullYear(); 
+
+        
+        var hours = date.getHours(); 
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds(); 
+        var ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12; 
+        hours = hours ? hours : 12; 
+
+        
+        d = (d < 10) ? "0" + d : d;
+        m = (m < 10) ? "0" + m : m;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+        
+        var dateStr = "Date: " + d + "/" + m + "/" + y + " Day: " + dayName + " Time: " + hours + ":" + minutes + ":" + seconds + " " + ampm;
+
+        
+        document.getElementById("MyCalanderDisplay").innerText = dateStr;
+
+        
+        setTimeout(showYear, 1000);
+      }
+
     
-    if(d==0){
-        d = 31
-    }
-    
-    if(d > 31){
-        d = d - 31
-    }
-
-    d =(d < 10) ? "0" + d : d;
-    m =(m < 10) ? "0" + m : m;
-    y =(y < 10) ? "0" + y : y;
-
-    var year = "Date: " + d + "/" + m + "/" + y + " Day:" + d;
-    document.getElementById("MyCalanderDisplay").innerText = year;
-    setYearout(showYear,1000); 
-}
-
-showYear();
-      </script>  
-    </body>
+      showYear();
+    </script>
+  </body>
 </html>
